@@ -14,6 +14,9 @@ gem 'nokogiri'
 gem 'mechanize'
 gem 'figaro'
 
+gem 'memcachier'
+gem 'dalli'
+
 group :doc do
   gem 'sdoc', require: false
 end
