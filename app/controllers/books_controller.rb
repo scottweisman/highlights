@@ -1,19 +1,19 @@
 require 'actionpack/action_caching'
 
 class BooksController < ApplicationController
-	caches_action :index, expires_in: 1.hour
-	caches_action :show, expires_in: 1.hour
+	caches_action :index, expires_in: 30.minutes
+	caches_action :show, expires_in: 30.minutes
 
 	def index
 		@agent = Mechanize.new
 	  @agent.user_agent_alias = 'Mac Safari'
 	  @agent.get("https://kindle.amazon.com/")
 	  if @agent.page.link_with(text: 'Guest')
-		  @agent.page.link_with(text: "sign in").click
-		  @form = @agent.page.forms.first
-		  @form.email = session[:email]
-		  @form.password = session[:password]
-		  @form.submit
+		  @agent.page.link_with(text: "Sign in").click
+		  form = @agent.page.forms.first
+		  form.email = session[:email]
+		  form.password = session[:password]
+		  form.submit
 		end
 	  @agent.page.link_with(text: "Your Books").click
 
