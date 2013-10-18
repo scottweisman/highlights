@@ -17,27 +17,31 @@ class BooksController < ApplicationController
 		  form.password = session[:password]
 		  form.submit
 		end
-	  @agent.page.link_with(text: "Your Books").click
+		if @agent.page.link_with(text: 'Your Books')
+		  @agent.page.link_with(text: "Your Books").click
 
-		@results = @agent.page.search(".titleAndAuthor a")
-
-		@books = []
-		@results.each do |result|
-			book = Hash.new
-			book[:title] = result.content
-			book[:asin] = result["href"].split("/").last
-			@books << book
-		end
-
-		while @agent.page.link_with(text: "Next >")
-			@agent.page.link_with(text: "Next >").click
 			@results = @agent.page.search(".titleAndAuthor a")
+
+			@books = []
 			@results.each do |result|
 				book = Hash.new
 				book[:title] = result.content
 				book[:asin] = result["href"].split("/").last
 				@books << book
 			end
+
+			while @agent.page.link_with(text: "Next >")
+				@agent.page.link_with(text: "Next >").click
+				@results = @agent.page.search(".titleAndAuthor a")
+				@results.each do |result|
+					book = Hash.new
+					book[:title] = result.content
+					book[:asin] = result["href"].split("/").last
+					@books << book
+				end
+			end
+		else
+			redirect_to signin_path, alert: 'Sorry we could not log you into your Kindle account.'
 		end
 
 	end
