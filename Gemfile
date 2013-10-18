@@ -14,6 +14,7 @@ gem 'nokogiri'
 gem 'mechanize'
 gem 'figaro'
 
+gem 'actionpack-action_caching'
 gem 'memcachier'
 gem 'dalli'
 
