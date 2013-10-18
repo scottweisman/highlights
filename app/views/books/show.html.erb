@@ -1,0 +1,11 @@
+<%= render 'header' %>
+
+<div class="container">
+	<h1><%= @title.text %></h1>
+	<h3><%= @author.text %></h3>
+	<div class="highlights">
+		<% @highlights.each do |highlight| %>
+			<p><%= highlight.text %></p>
+		<% end %>
+	</div>
+</div>

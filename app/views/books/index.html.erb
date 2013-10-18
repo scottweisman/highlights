@@ -1,0 +1,11 @@
+<%= render 'header' %>
+
+<div class="container">
+	<h1>Your Books</h1>
+
+	<ul class="books">
+		<% @books.each do |book| %>
+			<li class="book"><%= link_to book[:title], book_path(book[:asin]) %></li>
+		<% end %>
+	</ul>
+</div>

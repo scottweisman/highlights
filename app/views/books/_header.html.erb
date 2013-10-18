@@ -1,0 +1,6 @@
+<header>
+	<div class="container clearfix">
+		<%= link_to 'Books', books_path, class: 'home_link' %>
+		<%= link_to 'Sign out', signout_path, class: 'signout_link' if signed_in? %>
+	</div>
+</header>
