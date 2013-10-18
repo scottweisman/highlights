@@ -1,6 +1,8 @@
 require 'actionpack/action_caching'
 
 class BooksController < ApplicationController
+	before_filter :authenticate_user
+
 	caches_action :index, expires_in: 30.minutes
 	caches_action :show, expires_in: 30.minutes
 
@@ -55,6 +57,11 @@ class BooksController < ApplicationController
 	end
 
 	def test
-
 	end
+
+	private
+
+		def authenticate_user
+			redirect_to signin_path unless signed_in?
+		end
 end
