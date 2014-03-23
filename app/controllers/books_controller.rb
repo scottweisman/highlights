@@ -41,7 +41,7 @@ class BooksController < ApplicationController
 				end
 			end
 		else
-			redirect_to signin_path, alert: 'Sorry we could not log you into your Kindle account.'
+			redirect_to signin_path, alert: 'Sorry, we could not log you into your Kindle account.'
 		end
 
 	end
