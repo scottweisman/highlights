@@ -19,6 +19,7 @@ class BooksController < ApplicationController
 		end
 		if @agent.page.link_with(text: 'Your Books')
 		  @agent.page.link_with(text: "Your Books").click
+		  @agent.page.link_with(text: "Read").click
 
 			@results = @agent.page.search(".titleAndAuthor a")
 
