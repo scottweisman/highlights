@@ -11,8 +11,8 @@ class BooksController < ApplicationController
 	  @agent.user_agent_alias = 'Mac Safari'
 	  @agent.get("https://kindle.amazon.com/")
 	  if @agent.page.link_with(text: 'Guest')
-		  @agent.page.link_with(text: "Sign in").click
-		  form = @agent.page.forms.first
+		  @agent.get("https://kindle.amazon.com/login")
+		  form = @agent.page.form_with(id: "ap_signin_form")
 		  form.email = session[:email]
 		  form.password = session[:password]
 		  form.submit
